@@ -26,7 +26,7 @@ This is a bugfix and maintenance release for 2.4.1. Users are advised to update 
 * Frank Michler
 * Alex Peyser
 
-== NEST 2.4.1 Release Notes ==
+## NEST 2.4.1 Release Notes
 
 This is a bugfix and maintenance release for 2.4.0, in which the Topology Module contains a bug which leads to the creation of too few connections (N/num_threads instead of N) when using the divergent connection_type in ConnectLayers in a multi-threaded mode. Users are advised to update their installation as soon as possible.
 
@@ -39,11 +39,11 @@ Here's a detailed list of changes:
 * Update the reference in the `README.txt` of the microcircuit model by Potjans&Diesmann (http://dx.doi.org/10.1093/cercor/bhs358).
 * Remove special characters from `iaf_chs_2007` that confused the copyright-header checker.
 
-== NEST 2.4.0 Release Notes ==
+## NEST 2.4.0 Release Notes
 
 <span style="color:#990000">The Topology Module of this version of NEST contains a bug which leads to the creation of too few connections (N/num_threads instead of N) when using the divergent connection_type in ConnectLayers in a multi-threaded mode. Please update your installation at least to NEST 2.4.1.</span>
 
-=== Re-implementation of PyNEST ===
+### Re-implementation of PyNEST
 
 The Python interface to NEST (PyNEST) has been re-implemented from scratch. The new implementation (CyNEST) is based on Cython and provides the following improvements over the previous version:
 
@@ -60,7 +60,7 @@ Minor changes to PyNEST are:
 
 Please note that CyNEST requires Cython version 0.19.2 or higher to regenerate the source files (only for developers). This can be installed using `pip install --user --upgrade cython`.
 
-=== New routines for setting up connectivity ===
+### New routines for setting up connectivity
 
 The `Connect` function of NEST has been completely re-written in order to support a more flexible setup of connectivity. In particular this means that connectivity is now specified using a rule (all-to-all, one-to-one, fixed-indegree, fixed-outdegree, fixed-total-number, or pairwise-bernoulli) and a dictionary with synapse parameters. All connection parameters can now be randomized already during connection setup by specifying the random distribution.
 
@@ -72,13 +72,13 @@ If you are using SLI, all your scripts will be working without changes. PyNEST's
 
 The new `Connect` function is provided as a technology preview. This means that while the basic user interface will stay, the functionality and performance will be further extended in future releases.
 
-=== Global spike detector ===
+### Global spike detector
 
 In parallel simulations on very large machines without local disks, saving recorded spikes often leads to performance problems, because each spike detector will write out one file per virtual process. This problem is now ameliorated by a new spike detection mode, which can be activated by the users of such machines. In the new mode, all spike detectors are allocated on a distict set of processes.
 
 See Global spike detection mode for details on the new recording mode and how to activate it.
 
-=== Random number generators and distributions ===
+### Random number generators and distributions
 
 In the process of implementing the new connection routines, we found several performance problems in NEST's librandom and inconsistencies with PyNN (http://neuralensemble.org/PyNN/). To solve these problems, we changed several aspects of librandom.
 
@@ -88,13 +88,13 @@ To achieve consistent results for both global and local spike detector mode, the
 
 If NEST is compiled with support for GSL, `gsl_rng_knuth2002` is now used instead of `knuthlfg` as per-thread and global random number generator (RNG) to improve performance. Both RNGs create identical sequences, so new simulation results are still comparable to old ones.
 
-==== Support for connectivity-generating libraries ====
+#### Support for connectivity-generating libraries
 
 In NEST 2.4, the direct implementation of the ConnectionGenerator interface has been replaced in favor of support for libneurosim (see http://software.incf.org/software/libneurosim). This allows to couple all connectivity-generating libraries (e.g. the Connection-set algebra; http://software.incf.org/software/csa) with NEST, which support libneurosim.
 
 See Djurfeldt et al. (2014, http://dx.doi.org/10.3389/fninf.2014.00043) for details about the new interface.
 
-=== New models and model improvements ===
+### New models and model improvements
 
 * `stdp_facetshw_synapse` mimics the restrictions of the neuromorphic HMF developed in the context of FACETS and BrainScaleS.
 * `aeif_cond_alpha_RK5`, which is independent of the GSL by using a custom version of the RK5 solver.
@@ -107,7 +107,7 @@ See Djurfeldt et al. (2014, http://dx.doi.org/10.3389/fninf.2014.00043) for deta
 * Recovery variable `U_m` is recordable in `izhikevich`.
 * `spike_detector` now throws an error for spike times of 0.
 
-=== Improved quality and documentation ===
+### Improved quality and documentation
 
 Compared to the 2.2.2 release, we have increased the number of unit tests from 270 to 418. This improvement guarantees the continued quality of NEST on the computer of the user and allows to find and fix problems quickly. To run the testsuite after installation, run `make installcheck` from the build directory.
 
@@ -115,7 +115,7 @@ Many examples have been updated and extended to demonstate the usage of NEST. In
 
 In order to prevent memory leaks by forgotten arguments on the SLI stack, PyNEST now can do stack checking and runs its own testsuite in this mode.
 
-=== New SLI functions and improvements ===
+### New SLI functions and improvements
 
 * Added an `eval` function to execute SLI code in strings.
 * `SetMaxBuffered` which sets the max buffered parameter of a MUSIC input port.
@@ -125,7 +125,7 @@ In order to prevent memory leaks by forgotten arguments on the SLI stack, PyNEST
 * `cvi` is identity operation for integers.
 * `Take` now also works for strings.
 
-=== Deprecated functionality ===
+### Deprecated functionality
 
 The following SLI/PyNEST functions are obsolete will be removed in the next version:
 
@@ -134,7 +134,7 @@ The following SLI/PyNEST functions are obsolete will be removed in the next vers
 * `FindConnections` is superseded by `GetConnections`.
 * Support for plain POSIX threads will be removed in favor of OpenMP.
 
-=== Contributors since NEST 2.2 ===
+### Contributors since NEST 2.2
 
 * Claudia Bachmann
 * Hannah Bos
