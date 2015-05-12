@@ -49,18 +49,18 @@ The most significant changes concern the simulation kernel and the way it repres
 
 NEST 2.2.0 supports the Connection Set Algebra by Mikael Djurfeldt (http://dx.doi.org/10.1007/s12021-012-9146-1). The Connection Set Algebra is a powerful notation that allows to formulate complex network architectures in a concise manner. The following examples illustrates how the CSA is used to connect a random network:
 
- import csa
- import nest
- 
- # Random connectivity with connection probability 0.1
- cs = csa.random(0.1)
- 
- # Create two neuron populations
- pop1 = nest.LayoutNetwork("iaf_neuron", [16])
- pop2 = nest.LayoutNetwork("iaf_neuron", [16])
- 
- # Connect them using the connection generator cs
- nest.CGConnect (pop0, pop1, cs)
+    import csa
+    import nest
+    
+    # Random connectivity with connection probability 0.1
+    cs = csa.random(0.1)
+    
+    # Create two neuron populations
+    pop1 = nest.LayoutNetwork("iaf_neuron", [16])
+    pop2 = nest.LayoutNetwork("iaf_neuron", [16])
+    
+    # Connect them using the connection generator cs
+    nest.CGConnect (pop0, pop1, cs)
 
 ### Data driven network generation
 
@@ -72,22 +72,22 @@ The new function `GetConnections` allows to efficiently retrieve the afferent an
 
 The topology library supports the creation of spatially organized networks, e.g. for models of the visual system. NEST 2.2.0 supports 3-dimensional networks, where neurons are placed in a volume rather than on a sheet. The following example shows how to connect a layer to itself with a Gaussian distance-dependent probability profile:
 
- import nest
- import nest.topology as topo
- 
- # Specify layer structure and connectivity profile
- layer_spec = {'columns': 30, 'rows': 30, 'extent': [3.0, 3.0], 'elements': 'iaf_neuron'} 
- conn_spec = {'connection_type': 'convergent',
-              'mask': {'circular': {'radius': 3.0}},
-              'kernel': {'gaussian': {'p_center': 1.0, 'sigma': 0.5}},
-              'weights': 1.0, 'delays': 1.0}
- 
- # Create layer and connections
- layer = topo.CreateLayer(layer_spec)
- topo.ConnectLayers(layer, layer, conn_spec)
- 
- # Visualize all targets of neuron at center of layer
- topo.PlotTargets(topo.FindCenterElement(layer), layer)
+    import nest
+    import nest.topology as topo
+    
+    # Specify layer structure and connectivity profile
+    layer_spec = {'columns': 30, 'rows': 30, 'extent': [3.0, 3.0], 'elements': 'iaf_neuron'} 
+    conn_spec = {'connection_type': 'convergent',
+                 'mask': {'circular': {'radius': 3.0}},
+                 'kernel': {'gaussian': {'p_center': 1.0, 'sigma': 0.5}},
+                 'weights': 1.0, 'delays': 1.0}
+    
+    # Create layer and connections
+    layer = topo.CreateLayer(layer_spec)
+    topo.ConnectLayers(layer, layer, conn_spec)
+    
+    # Visualize all targets of neuron at center of layer
+    topo.PlotTargets(topo.FindCenterElement(layer), layer)
 
 There is also a new API to add user defined connection kernels. Please refer to the updated user manual and examples for more details.
 
