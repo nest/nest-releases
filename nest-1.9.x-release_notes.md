@@ -34,7 +34,7 @@
 
 ## Version 1.9.8498 (2009-11-16)
 
-* New model: `mat2_psc_exp` based on Kobayashi et al. (2009) Front. Comput. Neurosci. 3:9. (doi:10.3389/neuro.10.009.2009)[http://dx.doi.org/10.3389/neuro.10.009.2009]
+* New model: `mat2_psc_exp` based on Kobayashi et al. (2009) Front. Comput. Neurosci. 3:9. (http://dx.doi.org/10.3389/neuro.10.009.2009)
 * Fix Python symbol lookup error when using OpenMPI (SVN r8491)
 * New model: `iaf_tum_2000`, which is the same as the old `iaf_psc_exp` and still has two refractory times (SVN r8480)
 * Removed second refractory time from `iaf_psc_exp` (SVN r8480)
