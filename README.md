@@ -6,5 +6,4 @@ License version 2 (or later).
 
 For versions earlier than 2.0, please [contact
 us](http://nest-simulator.org/impressum). The release notes for these
-old releases are available in the file
-(nest-1.9.x-release_notes.md)[nest-1.9.x-release_notes.md].
+old releases are available in the file nest-1.9.x-release_notes.md.
